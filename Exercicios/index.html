@@ -11,12 +11,29 @@
         h1{
             color: #090;
         }
+        #container{
+            width: 200px;
+            height: 100px;
+            border: 1pc solid red;
+            margin: 20px;
+        }
+        #diferente{
+            width: 200px;
+            height: 100px;
+            border: 1pc solid black;
+            margin: 20px;
+        }
     </style>
 </head>
 <body>
     <h1 id="cor">Cabeçalho muda de cor</h1>
     <button type="button" id="btn-vermelha">Vermelha</button>
     <button type="button" id="btn-azula">Azula</button>
+
+    <div id="container">
+        <p>fasdfsdfads</p>
+    </div>
+    <div id="diferente"></div>
 </body>
     <!-- Solucão com Javascriipt Puro -->
     <script type="text/javascript">
@@ -37,8 +54,16 @@
             });
         });
     // Construtor $(); ou jQuery();
-    console.log(jQuery.browser);
+   
     console.log(navigator.userAgent);    
+    // console.log(jQuery.browser); //removido na versao 1.9
+
+    // expressão contesto
+
+    $(document).ready(function(){
+        $('#diferente').css('background', 'green'); // Sem uso do parâmetro contexto
+        $('p', $('#container')).css('color', 'red'); // Com uso do parâmetro
+    });
    
 
     </script>

@@ -23,6 +23,83 @@
             border: 1pc solid black;
             margin: 20px;
         }
+        .jump {
+            animation: jump 1s 2s forwards cubic-bezier(.84,-0.54,.31,1.19);
+        }
+
+        .waggle {
+            animation: waggle 1s 3s forwards ease-out;
+        }
+
+        .sheen {
+            position: relative;
+            overflow: hidden;
+        }
+        .efeitos {
+            background: orange;
+            border: 6px solid #eee;
+            border-radius: 1em;
+            color: #fff;
+            font-size: 24px;
+            padding: 0.5em 1em;
+            margin: 0.25em 0;
+            min-width: 7em;
+        }
+        @keyframes jump {
+            0% {
+                transform: none;
+            }
+            50% {
+                transform: translateY(-2em);
+            }
+            }
+
+            @keyframes waggle {
+            0% {
+                transform: none;
+            }
+            50% {
+                transform: rotateZ(-20deg) scale(1.2);
+            }
+            60% {
+                transform: rotateZ(25deg) scale(1.2);
+            }
+            67.5% {
+                transform: rotateZ(-15deg) scale(1.2);
+            }
+            75% {
+                transform: rotateZ(15deg) scale(1.2);
+            }
+            82.5% {
+                transform: rotateZ(-12deg) scale(1.2);
+            }
+            85% {
+                transform: rotateZ(0) scale(1.2);
+            }
+            100% {
+                transform: rotateZ(0) scale(1);
+            }
+        }
+
+        @keyframes sheen {
+        100% {
+            transform: rotateZ(60deg) translate(0, -4em);
+            }
+        }
+
+        .sheen:after {
+            animation: sheen 1s 4s forwards; /*infinite*/
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.5) 50%, transparent);
+            transform: rotateZ(60deg) translate(-1em, 4em);
+        }
+
+
     </style>
 </head>
 <body>
@@ -34,6 +111,10 @@
         <p>fasdfsdfads</p>
     </div>
     <div id="diferente"></div>
+
+    <button class="jump efeitos">Jump</button>
+    <button class="waggle efeitos">Waggle</button>
+    <button class="sheen efeitos">Sheen</button>
 </body>
     <!-- Solucão com Javascriipt Puro -->
     <script type="text/javascript">

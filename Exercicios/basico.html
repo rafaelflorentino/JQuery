@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery</title>
+    <script type="text/javascript" src="jquery3.7.1.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> -->
+
+    <style type="text/css">
+        h1{
+            color: #090;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="cor">Cabeçalho muda de cor</h1>
+    <button type="button" id="btn-vermelha">Vermelha</button>
+    <button type="button" id="btn-azula">Azula</button>
+    <div>
+        <h2>so div</h2>
+    </div>
+    <p>so paragrafo</p>
+    <div>
+        <p>paragrafo dentro da div</p>
+    </div>
+
+    <div>
+        <h2>so div 2</h2>
+    </div>
+
+    <ul>
+        <li>lista 1</li>
+        <li>lista 2</li>
+        <li>lista 3</li>
+        <li>lista 4</li>
+        <li>lista 5</li>
+        <li>lista 6</li>
+        <li>lista 7</li>
+    </ul>
+    <button type="button" id="mudaDiv">mudar div</button>
+    <button type="button" id="contador">Contar</button>
+    <h3></h3>
+    <button type="button" id="paragrafos">paragrafos</button>
+    <button type="button" class="reset" id="reset">reset</button>
+
+    <blockquote>
+        <p>paragrafo A</p>
+        <p>paragrafo B</p>
+        <p>paragrafo C</p>
+        <p>paragrafo D</p>
+        <span>aaa</span>
+        <article class="indce">
+    </blockquote>
+
+    <article></article>
+    <aside></aside>
+    <strike></strike>
+    <big></big>
+    <small class="pequeno">pequeno</small>
+
+
+    <button type="button" class="toarray" id="toarray">toarray</button>
+
+    <p>paragrafo</p>
+    <h4>titulo</h4>
+    <p>paragrafo</p>
+    <p>paragrafo</p>
+    <span>span</span>
+
+    <table>
+        <tr>
+            <td>
+                <h1>sssss</h1>
+                <p>vxssssss</p>
+            </td>
+            <td></td>
+            <td>
+                <h1>bbbbb</h1>
+                <p>bbbg</p>
+            </td>
+            <td>
+                <h1>fdsgfdg</h1>
+                <p>sfdgf</p>
+            </td>
+        </tr>
+    <tr>
+        <td></td>  
+    </tr>
+
+    </table>
+    <header>titulo</header>
+    <p>sem strong</p>
+    <p>s<strong>dentro</strong></p>
+    <strong><p>fora</p></strong>
+    <strong>com texto</strong>
+    <strong></strong>
+
+    <input type="hidden">
+    <input type="hidden">
+
+    <button class="ocult">revelar ocultos</button>
+    <p class="ocultos"></p>
+    <h1 style="display:none;">display none</h1>
+    
+</body>
+    <!-- Solucão com Javascriipt Puro -->
+    <script type="text/javascript">
+        window.onload = function(){
+            document.getElementById('btn-azula').onclick = mudaCor;
+        };
+        
+        function mudaCor(){
+            document.getElementById('cor').style.color = 'blue';
+        };
+    </script> 
+
+<!-- Solucão com JQuery -->
+    <script type="text/javascript">
+        $(document).ready(function(){   
+            $('#btn-vermelha').click(function(){
+                $('#cor').css('color', '#FF0000');
+            });
+
+            $('<p>Loren ipsun asdfadsff.</p>').prependTo('body'); // Insere conteudo na pagina
+            $('div, p').css('background', 'green');// Dois seletrores: div e p ao mesmo tempo
+
+             $('<span> Foram encontrados: '+ nDiv+ 'DÎVs.</span>');
+        });
+    // Construtor $(); ou jQuery();
+    console.log(jQuery.browser);
+    console.log(navigator.userAgent);   
+    
+    // Função Callback, parece com a função ready reduzida
+    $(function($){
+        $('div, p').css('background', 'red');
+    });
+
+    // Função each (procura cada um dos elementos e passa i como parametro)
+    $(document).ready(function(){
+       $('#mudaDiv').click(function(){
+            $('div').each(function(i){          
+                $(this).css('background','blue');
+            });
+        });
+    });
+
+    // Função selector length // conta quantas div stem na agina e imprimi texto na página
+    $(document).ready(function(){
+        $('#contador').click(function(){
+            var nDiv = $('div').length;
+            $('<span> Foram encontrados: '+ nDiv+ 'DIVs.</span>').appendTo('h3');
+        });
+    });
+
+    // Função EQ([-]posição) // muda a cor da li
+    $(document).ready(function(){ 
+        $('li').eq(2).css('color', 'yellow'); // seleciona a li na posição 2(começa a conta pelo 0)
+    });
+
+    // Função get() // Retorna um array de elemenos
+    $(document).ready(function(){ 
+       function conteudoParagrafos(p){
+            var arrayConteudos = [];
+            for(var i = 0; i< p.length; i++){
+                arrayConteudos.push(p[i].innerHTML);
+            }
+            $('div').text(arrayConteudos.join(' - '));
+       }
+       $('#paragrafos').click(function(){
+        conteudoParagrafos($('p').get().reverse());
+       });
+
+       $('#reset').click(function(){
+        $('div').empty();
+       });
+    });
+
+// Função index() // Retorna o valor da posição em relação aos irmãos
+    $(document).ready(function(){ 
+        $('p').click(function(){
+            var indice = $(this).index(); // so index() mostra em relação aos irmãos
+            $('article').append('O indice deste elemeto em reação a DOM é: <span>'+indice+'</span> <br/>');
+            var indice2 = $('p').index(this); // index + elemento mostra na dom
+            $('aside').append('O indice deste elemeto em reação a seus imãos é: <span>'+indice2+'</span> <br/>');
+            $('strike').empty();
+            var indice3 =$('p').index($('p:gt(0)')); // index Selector Query // Selector Index
+            $('strike').append('O indice do segundo paragrafo é: <span>'+indice3+'</span> <br/>');
+        });
+        $('.reset').click(function(){
+            $('article').empty();   
+            $('aside').empty();
+        });
+
+    });
+
+// Selector to.Array() // pega conteudo dos elementos, nesse caso pega o conteudo de todos os paragrafos p
+$(document).ready(function() {
+    function conteudoParagrafos(p){
+        var arrayConteudos = [];
+        for(var i = 0; i< p.length; i++){
+            arrayConteudos.push(p[i].innerHTML);
+        }
+        $('big').text(arrayConteudos.join('-'));
+    }
+    $('#toarray').click(function(){
+        conteudoParagrafos($('p').toArray().reverse());
+    })
+})
+
+// jQuery.noConflict() // mais de uma biblioteca javascript que usa $()
+/* // Personalizando as tag Jquery
+$(document).ready(function() {
+    var $j = jQuery.noConflict(); // Evitar conflitos, cria um sifrão especidico
+    jQuery('p').show(); // usar jQuery no lugar de $
+    $j('body').css('background', 'gray');// usando novo cifrao especifico
+
+    // Usar função: function($) e colocar todo jquery dentro dela ja do lado de fora poder usar outras bibliotecas
+    (function($){
+        $('body').css('background', 'white');
+    })(jQuery);
+});
+*/
+
+// Grupamentos de seletores, editar vários elementos ao mesmo tempo
+$(document).ready(function() {
+    $('strike, big, article').css('color', 'green');
+    $('.pequeno').css('color', 'purple'); // pegando pela classe
+    $('blockquote p').css('color', 'yellow'); // seletor descendente
+    $('blockquote > p').css('color', 'yellow'); // seletor elemento filho
+    $('blockquote + small').css('color', 'yellow'); // seletor proximo elemento que segue imediatamente
+    $('h4 ~ p').css('background', 'gray'); // seletor todos os elementos irmão que seguem(só os irmãos da frente)
+
+    // Seletores Filtros básicos
+    $('li:first').css('color', 'pink'); // primeiro filho li
+    $('li:last').css('color', 'green'); // último filho li
+    $('li:not(li:first)').css('background', 'lightgray'); // not() = aplica em todos menos esse
+    $('li:even').css('background', 'yellow'); // pega os elemetos paraes 0, 2, 4
+    $('li:odd').css('background', 'blue'); // pega os elemetos impares 1, 2, 3
+    $('li:eq(3)').css('background', 'red'); // pega o elemento especidico no caso na posição 3
+    $('li:gt(3)').css('background', 'olive'); // pega todos os elementos depois da posição 3(maiores que a posicao 3)]
+    $('td:lt(4)').css('background', 'pink');// aloca e  todas ocorrencias doelemento assado
+    $(':header').css('background', 'purple'); // todas as ocorrencia de cabeçalho em qualque nivel
+    // seletor:animated // acessa as corencias do documento
+
+    // Seletores de conteudo
+    // seleor:contains(texto) // acessa todas as orqcorrencias do seletor que contenham um texto
+     $('td:empty').css('background', 'orange'); // pega todos os elementos vázios
+     $('td:empty').append("nao vazio");// pega todos os elementos vázios
+     $('p:has(strong)').css('color', 'brown');// pega todos os elementos que tenham pelo menos uma ocorrencia de strong
+     $('strong:parent').css('background', 'pink');// pega todos os elementos que são pai, ou seja que possuem filhos.
+
+     // Seletores de visibilidade
+     $('td:empty').css('background', 'orange'); // pega todos os elementos vázios
+    
+     $('.ocult').click(function(){ // mostrar itens invisiveis e item ocultos
+        var totalOcultos = $(':hidden', $('body')).length; // se usa :hidden', $('body') para não pegar os elementos do head só os ocutos do body
+        var inputsOcultos = $('input:hidden').length; // pega só os inputs ocultos
+        var visiveis = $(':visible', $('body')).length; // Mostra os item invisiveis
+        $('.ocultos').text('Elementos ocultos encontrados: '+totalOcultos+ ' E inputs ocultos: '+inputsOcultos +' Elementos visíveis: '+visiveis);
+     });    
+}); 
+    </script>
+</html>

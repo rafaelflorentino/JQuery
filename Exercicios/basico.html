@@ -102,6 +102,16 @@
     <button class="ocult">revelar ocultos</button>
     <p class="ocultos"></p>
     <h1 style="display:none;">display none</h1>
+    <p title="meu_titulo">meu titulo</p>
+    <p title="outro_titulo">outro titulo</p>
+    <p title="out">out</p>
+    <p title="malout">malout</p>
+    <p title="tulo">tulo</p>
+    <p title="matulo">matulo</p>
+    <p title="tulomat">tulomat</p>
+    <p title="pala">pala</p>
+    <p title="pala">palavra</p>
+    <p title="pala">vapala</p>
     
 </body>
     <!-- Solucão com Javascriipt Puro -->
@@ -259,6 +269,27 @@ $(document).ready(function() {
         var visiveis = $(':visible', $('body')).length; // Mostra os item invisiveis
         $('.ocultos').text('Elementos ocultos encontrados: '+totalOcultos+ ' E inputs ocultos: '+inputsOcultos +' Elementos visíveis: '+visiveis);
      });    
+
+     // Seletores de atributo
+     $('p[title = "meu_titulo"]').click(function(){ // procura p que tenha o elemento title igual a meu_titulo
+        $('p[title = "meu_titulo"]').css('background','yellow');
+    });   
+
+    $('p[title]').click(function(){ // procura p que tenha o elemento title igual a meu_titulo
+        $('p[title != "meu_titulo"]').css('background','pink'); // procura todos os elementos que não são title
+    });    
+
+    $('p[title]').click(function(){ // procura p que tenha o elemento title igual a meu_titulo
+        $('p[title ^= "out"]').css('background','olive'); // procura todos os elementos que comecam com out
+    });    
+
+    $('p[title]').click(function(){ // procura p que tenha o elemento title igual a meu_titulo
+        $('p[title $= "tulo"]').css('background','orange'); // procura todos os elementos que tenham a srting tulo
+    }); 
+
+    $('p[title]').click(function(){ // procura p que tenha o elemento title igual a meu_titulo
+        $('p[title *= "pala"]').css('background','red'); // procura todos os elementos que tenham pala
+    }); 
 }); 
     </script>
 </html>

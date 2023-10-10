@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="jquery3.7.1.js"></script>
+    <title>Seletores</title>
+</head>
+<body>
+    <ul>
+        <li>item 01</li>
+        <li>item 02</li>
+        <li>item 03</li>
+        <li>item 04</li>
+        <li>item 05</li>
+        <li>item 06</li>
+        <li>item 07</li>
+    </ul>
+    <ul>
+        <li>unico</li>
+    </ul>
+    <label for="nome">Nome: </label>
+    <input type="text" name="nome" id="nome"><br>
+
+    <label for="senha">senha</label>
+    <input type="password" name="sobrenome" id="sobrenome"><br>
+
+    <textarea name="" id="" cols="30" rows="10"></textarea><br>
+
+<select name="opcoes" id="">
+    <option value="opcao 01">opcao 01</option>
+    <option value="opcao 02">opcao 02</option>
+    <option value="opcao 02">opcao 03</option>
+</select>
+
+<button>botão</button>
+
+<div id="radios">
+    <input type="radio" value="m" name="masculino" id="masculino"><label for="masculino">M</label>
+    <input type="radio" value="f" name="femenino" id="femenino"><label for="femenino">F</label>
+</div>
+
+<div>
+    <input type="checkbox" id="permicao"><label for="permicao" id="permicao">permitir</label>
+</div>
+<p title="texto">texto</p>
+
+
+<input type="submit">
+
+<input type="reset">
+
+<img src="" alt="erro" width="100" height="100">
+<h1 title="tituloh1">titulo</h1>
+
+<input type="button" class="clicar" value="clicar">
+
+<div id="resultado" style="display: none;"></div>
+<h3>mensagem h3</h3>
+
+ 
+
+    <script>
+        // Seletores Filhos
+        $(document).ready(function() {
+            $('ul li:first-child').css('color', 'red');
+            $('ul li:last-child').css('color', 'orange');
+            $('ul li:only-child').css('color', 'olive'); // único filho
+            $('ul li:nth-child(2)').css('background', 'lightblue');// só a posição 2
+            $('ul li:nth-child(3n)').css('background', 'gray');// todos as poisiçoes de 3 em 3 =  3, 6, 9
+        });
+
+        // Seletores de formulários
+        $(document).ready(function() {
+            $(':input').css('border', '2px solid #ff0000');
+            $(':text').css('border', '2px solid olive');
+            $(':password').css('border', '2px solid yellow');
+            $(':radio').parent().css('border', '2px solid blue'); // pega o pai dos radios
+            $(':checkbox').parent().css('border', '2px solid olive'); // pega o pai dos checkbox
+            $(':submit').parent().css('border', '2px solid pink'); // pega o pai dos checkbox
+            $(':reset').parent().css('border', '2px solid purple'); // pefa os pais de reset
+            $(':image').css('border', '2px solid gray'); // pega a i,game
+            $(':buton').parent().css('border', '2px solid purple');
+            $(':file').parent().css('border', '2px solid yellow');
+            $(':hiden').parente().css('border', '2px solid yellow'); //  do tipo hidde,
+            $(':hiden').parente().css('border', '2px solid yellow'); //  do tipo hidde,
+            $(':enable').parente().css('border', '2px solid yellow'); //  do tipo hidde,
+            $(':disible').parente().css('border', '2px solid yellow'); //  do tipo hidde,
+            $(':checked').parente().css('border', '2px solid yellow');
+            $(':select').parente().css('border', '2px solid yellow');
+        });
+
+
+        $(document).ready(function() {
+            $('.clicar').click(function(){
+                var valorAtributo = $('h1').attr('title');
+                $('#resultado').css('display','block').text('O valor do atributo é: '+valorAtributo);
+
+                // Mudar só 1 atributo (chave valor)
+                $('img').css('display','block').attr('src','foto.jpg');
+                
+                // Mudar mais de 1 atributo
+                $('img').css('display','block').attr({
+                    src:"caminho.jpg",
+                    alt:"imagem",
+                    border:"5px"
+                })
+
+                // Passando uma função como valor
+                $('h3').empty();
+                $('img').attr('width', function(i, valor){
+                    $('<p class="msg"> width=' + valor*(i+1)+'px</p>').insertAfter(this);
+                    return(valor*(i+1));
+                })
+            });
+        });
+
+    </script>
+</body>
+</html>

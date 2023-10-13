@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="jquery3.7.1.js"></script>
+    <title>inspeção</title>
+    <style>
+        .fundo{
+            background-color:  gray;
+        }
+    </style>
+</head>
+<body>
+    <section class="contTitulo">
+        <h1 class="titulo">Titulo</h1>
+    </section>
+
+<div class="fundo"> 
+    <p>Paragrafo</p>
+</div>
+<div class="texto"></div>
+<button id="efeito1">Efeito1</button>
+
+<div class="posicao">
+
+</div>
+
+<div class="local">a</div>
+ 
+    <script>
+        
+        // Pegando a propriedade CSS e escrevendo na tela
+        $(document).ready(function() {
+            var corFundo = $('.fundo').css('backgroundColor');
+            $('.texto').text('A cor do fundo de  P é: '+corFundo);
+        });
+
+        // Mudando CSS, dos elementos
+        $(document).ready(function() {
+            $('#efeito1').click(function(){
+                $('.titulo').css('color','olive');
+                $('.titulo').css('border','3px solid red');
+                $('.titulo').css('backgroundColor','blue');
+
+                // Vários atributos de um só vez
+                $('.contTitulo').css({
+                    width: '400px',
+                    lineHeight: '60px',
+                    background: '#ff0',
+                    border:'3px dotted pink'
+                });
+
+                // Movendo a posição da div
+                var posicao = $('.titulo').offset();
+                $('.posicao').html('As coordenadas da div são <br>Left: ' + posicao.left+'px <br>Top: ' + posicao.top+'px');
+                $('.local').offset({top:100, left:600});
+                $('span').html('A div fois deslocada para as cordenadas left 600px e top 100px')
+
+            })
+           
+        });
+
+
+
+    </script>
+</body>
+</html>

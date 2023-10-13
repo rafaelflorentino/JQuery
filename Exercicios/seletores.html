@@ -58,6 +58,14 @@
 <div id="resultado" style="display: none;"></div>
 <h3>mensagem h3</h3>
 
+<p class="paragrafo normal item1" id="classes">classes</p>
+<p class="item2 olive" id="classes">classes</p>
+<p class="item3 olive" id="classes">classes</p>
+
+<input type="text" id="campo">
+<button type="button" id="botaoTexto">clicar</button>
+<p id="resposta"></p>
+<p id="resposta2"></p>
  
 
     <script>
@@ -113,7 +121,51 @@
                     return(valor*(i+1));
                 })
             });
-        });
+
+    // Inserindo e removendo classe, verificando se tem classe
+    $('#classes').addClass('red'); // adiconar
+
+    $('#classes').removeClass('normal');// remover
+
+    if($('#classes').hasClass('paragrafo')){ // verificar
+        console.log("tem classe paragrafo");
+    }else{
+        console.log("não tem classe paragrafo");
+    }
+
+    $('.olive').removeClass(function(indice, classe){
+    //return('item' + (indice +1))
+        return('item'+(indice + 1))
+    });
+    //toggleClass
+    $('#classes').toggleClass('remover');// remover
+
+    $('#classes').html('<span class="olive">sou um span com <code>html</code></span>');
+    $('.item3').text('conteudo de texto');
+
+    });
+    // pegar value do iput e imprimir a tela append e appendTo
+    $('#botaoTexto').click(function(){
+    var valorValue = $('#campo').val();
+    $('#resposta').text(valorValue);
+    $('#resposta').append('<strong>Aqui vai o texto inserido cosm jquery</strong>');
+    $('#resposta').prepend('antes ');
+    $('<strong>AppedTo</strong>').appendTo('#resposta2');    
+    $('#resposta').after('<strong>After');     
+    $('#resposta2').before('inseridno before');
+    $('#resposta2').wrap('<div class="container"> C </div>');
+    $('#resposta2').unWrap('<div class="container"> C </div>');
+    //  $('p').remove('.remover') // remove todas as ocorrencias de p com  .remover
+    //  $('p').empty(); // remove todo conteudo dos elementos
+    // $('p').replaceWith('<h1>cabeçalho substitui paragrafo</h1>'); // substitui o elemento por outro
+    // $('<h1>cabeçalho substitui paragrafo</h1>').replaceWith('p');
+    // $('p').clone().appendTo('div');  // clona o elmento
+    // $('.red').detach();  // remove do Dom  
+    });
+
+        
+        
+   
 
     </script>
 </body>
